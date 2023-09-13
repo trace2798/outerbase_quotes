@@ -20,12 +20,6 @@ const QuoteFeed: FC<QuoteFeedProps> = async ({}) => {
     <>
       <div className="grid grid-cols-1 gap-2 pb-10">
         {data.response.items.map((quote: any, index: any) => (
-          //   <Card key={index} className="max-w-sm">
-          //     <CardHeader>
-          //       <CardTitle className="text-base">{quote.quote}</CardTitle>
-          //       <CardDescription>By {quote.quote_by}</CardDescription>
-          //     </CardHeader>
-          //   </Card>
           <QuoteCard
             index={index}
             quote={quote.quote}

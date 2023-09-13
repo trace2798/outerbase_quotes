@@ -1,15 +1,11 @@
-import { UserButton, auth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-
+import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/mode-toggle";
 import AddQuote from "./add-quote";
+import { Button } from "./ui/button";
+import LoginButton from "./login-button";
 
-const Navbar = async () => {
+const Navbar = () => {
   const { userId } = auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
 
   return (
     <>
@@ -19,8 +15,14 @@ const Navbar = async () => {
 
           <div className="flex items-center ml-auto space-x-4">
             <ModeToggle />
-            <AddQuote />
-            <UserButton afterSignOutUrl="/" />
+            {userId ? (
+              <>
+                <AddQuote />
+                <UserButton afterSignOutUrl="/" />
+              </>
+            ) : (
+              <LoginButton />
+            )}
           </div>
         </div>
       </div>

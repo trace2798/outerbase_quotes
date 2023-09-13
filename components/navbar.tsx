@@ -1,12 +1,12 @@
 import { UserButton, auth, redirectToSignIn } from "@clerk/nextjs";
 import { ModeToggle } from "@/components/mode-toggle";
-import AddQuote from "./add-quote";
+import { AddQuote } from "./add-quote";
 import { Button } from "./ui/button";
 import LoginButton from "./login-button";
 
 const Navbar = () => {
   const { userId } = auth();
-
+console.log(userId)
   return (
     <>
       <div className="border-b">

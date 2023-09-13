@@ -61,7 +61,6 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({ user_id }) => {
   const onSubmit: SubmitHandler<FormData> = async (values) => {
     try {
       setLoading(true);
-      console.log(values);
       await fetch(`https://daily-beige.cmd.outerbase.io/postAQuote`, {
         method: "POST",
         headers: {
@@ -81,7 +80,6 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({ user_id }) => {
       router.refresh();
       router.push("/");
     } catch (error) {
-      console.error(error);
       toast({
         title: "Failed to submit data",
         description: "Make sure all fields are filled up.",

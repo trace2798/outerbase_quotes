@@ -15,12 +15,12 @@ const QuoteFeed: FC<QuoteFeedProps> = async ({}) => {
     }
   );
   const data = await quotes.json();
-  console.log(data, "DATA");
   return (
     <>
       <div className="grid grid-cols-1 gap-2 pb-10">
         {data.response.items.map((quote: any, index: any) => (
           <QuoteCard
+            key={index}
             index={index}
             quote={quote.quote}
             quote_by={quote.quote_by}

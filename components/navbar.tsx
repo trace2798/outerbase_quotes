@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 import LoginButton from "./login-button";
 
 const Navbar = () => {
-  const { userId } = auth();
-console.log(userId)
+  const { userId, user } = auth();
+  console.log(userId);
   return (
     <>
       <div className="border-b">
@@ -17,7 +17,7 @@ console.log(userId)
             <ModeToggle />
             {userId ? (
               <>
-                <AddQuote />
+                <AddQuote user_id={userId} />
                 <UserButton afterSignOutUrl="/" />
               </>
             ) : (

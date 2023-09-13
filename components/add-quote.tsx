@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/sheet";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
@@ -23,7 +22,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "./ui/form";
 
 import { useParams, useRouter } from "next/navigation";
@@ -36,26 +35,24 @@ const formSchema = z.object({
   user_id: z.string().min(1, {
     message: "User id is required.",
   }),
-  user_name: z.string().min(1, {
-    message: "User name is required.",
-  }),
 });
 
-interface AddQuoteFormProps {}
+interface AddQuoteFormProps {
+  user_id: string;
+}
 
-export const AddQuote: React.FC<AddQuoteFormProps> = ({}) => {
+export const AddQuote: React.FC<AddQuoteFormProps> = ({ user_id }) => {
   const params = useParams();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
-  const { user } = useUser();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       quote: "",
       quote_by: "",
-      user_id: user?.id ?? "Anomynous",
-      user_name: user?.firstName ?? "Anomynous",
+      user_id: user_id,
     },
   });
 
@@ -64,9 +61,8 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({}) => {
   const onSubmit: SubmitHandler<FormData> = async (values) => {
     try {
       setLoading(true);
-
       console.log(values);
-      await fetch(`https://supposed-tomato.cmd.outerbase.io/postAQuote`, {
+      await fetch(`https://daily-beige.cmd.outerbase.io/postAQuote`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -74,7 +70,6 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({}) => {
         body: JSON.stringify({
           quote: values.quote,
           quote_by: values.quote_by,
-          user_name: values.user_name,
           user_id: values.user_id,
         }),
       });
@@ -82,6 +77,7 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({}) => {
         description: "Success.",
         duration: 3000,
       });
+      form.reset();
       router.refresh();
       router.push("/");
     } catch (error) {
@@ -145,7 +141,7 @@ export const AddQuote: React.FC<AddQuoteFormProps> = ({}) => {
             </Button>
           </form>
         </Form>
-
+        <Input placeholder={user_id} disabled />
         <SheetFooter className="mt-10">
           <SheetClose asChild>
             <Button type="submit">Close form</Button>

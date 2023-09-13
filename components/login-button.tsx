@@ -9,7 +9,7 @@ const LoginButton: FC<LoginButtonProps> = ({}) => {
   const router = useRouter();
   return (
     <>
-      <Button onClick={() => router.push("/login")}>Login</Button>
+      <Button onClick={() => router.push("/sign-in")}>Login</Button>
     </>
   );
 };

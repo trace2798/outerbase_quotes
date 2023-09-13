@@ -1,35 +1,36 @@
-"use client";
 import { FC } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import Link from "next/link";
+import QuoteCard from "./quote-card";
 
 interface QuoteFeedProps {}
 
 const QuoteFeed: FC<QuoteFeedProps> = async ({}) => {
-  const quotes = await fetch(`https://supposed-tomato.cmd.outerbase.io/getAllQuotes`, {
-    method: "GET",
-    headers: {
-      "content-type": "application/json",
-    },
-    cache: "no-cache",
-  });
+  const quotes = await fetch(
+    `https://daily-beige.cmd.outerbase.io/getAllQuote`,
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+      cache: "no-cache",
+    }
+  );
   const data = await quotes.json();
   console.log(data, "DATA");
   return (
     <>
-     <div className="grid grid-cols-1  gap-2 pb-10">
+      <div className="grid grid-cols-1 gap-2 pb-10">
         {data.response.items.map((quote: any, index: any) => (
-          <Card key={index} className="max-w-sm">
-            <Link href={`/book/${quote.id}`}>
-              <CardHeader>
-                <CardTitle className="text-base">{quote.quote}</CardTitle>
-                <CardDescription>By {quote.quote_by}</CardDescription>
-                {/* <CardContent>
-                  <img src={book.src} alt="book" />
-                </CardContent> */}
-              </CardHeader>
-            </Link>
-          </Card>
+          //   <Card key={index} className="max-w-sm">
+          //     <CardHeader>
+          //       <CardTitle className="text-base">{quote.quote}</CardTitle>
+          //       <CardDescription>By {quote.quote_by}</CardDescription>
+          //     </CardHeader>
+          //   </Card>
+          <QuoteCard
+            index={index}
+            quote={quote.quote}
+            quote_by={quote.quote_by}
+          />
         ))}
       </div>
     </>

@@ -1,4 +1,4 @@
-
+// to create a table in the SQLlite database
 CREATE TABLE quote (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,

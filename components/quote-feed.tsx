@@ -17,7 +17,7 @@ const QuoteFeed: FC<QuoteFeedProps> = async ({}) => {
   const data = await quotes.json();
   return (
     <>
-      <div className="grid grid-cols-1 gap-2 pb-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pb-10">
         {data.response.items.map((quote: any, index: any) => (
           <QuoteCard
             key={index}

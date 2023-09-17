@@ -1,4 +1,6 @@
-// to create a table in the SQLlite database
+Command and queries I have used to create this application
+
+//A query to create a table in the SQLlite database
 CREATE TABLE quote (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id TEXT NOT NULL,
@@ -6,10 +8,16 @@ CREATE TABLE quote (
     quote_by TEXT DEFAULT 'Anonymous',
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-//working
+
+///All of the below are commands
+//Create: To post
 INSERT INTO quote (quote, quote_by, user_id, user_name)
 VALUES ('{{request.body.quote}}', '{{request.body.quote_by}}', '{{request.body.user_id}}', '{{request.body.user_name}}');
-//delete
-DELETE FROM quote WHERE id = '{{request.body.id}}';
-// get
+
+//Read: get all
 SELECT * FROM quote;
+
+//Update: WIP
+
+//Delete: To delete
+DELETE FROM quote WHERE id = '{{request.body.id}}';

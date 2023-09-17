@@ -55,7 +55,7 @@ const QuoteCard: FC<QuoteCardProps> = ({
         }),
       });
       toast({
-        description: "Success.",
+        description: "Quote successfully Deleted",
       });
       router.refresh();
     } catch (error) {

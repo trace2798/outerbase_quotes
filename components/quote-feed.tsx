@@ -24,6 +24,8 @@ const QuoteFeed: FC<QuoteFeedProps> = async ({}) => {
             index={index}
             quote={quote.quote}
             quote_by={quote.quote_by}
+            user_id={quote.user_id}
+            quote_id={quote.id}
           />
         ))}
       </div>

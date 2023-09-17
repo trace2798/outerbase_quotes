@@ -95,7 +95,7 @@ export const Edit: FC<EditProps> = ({ quote, quote_by, quote_id }) => {
         <DialogHeader>
           <DialogTitle>Edit quote</DialogTitle>
           <DialogDescription>
-            Make changes to your quote here. Click "Update Quote" when you are done.
+            Make changes to your quote here. Click &quot;Update Quote&quot; when you are done.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>

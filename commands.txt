@@ -17,7 +17,7 @@ VALUES ('{{request.body.quote}}', '{{request.body.quote_by}}', '{{request.body.u
 //Read: get all
 SELECT * FROM quote;
 
-//Update: WIP
-
+//Update: Update a quote
+UPDATE quote SET quote = '{{request.body.quote}}', quote_by = '{{request.body.quote_by}}' WHERE id = '{{request.body.id}}';
 //Delete: To delete
 DELETE FROM quote WHERE id = '{{request.body.id}}';

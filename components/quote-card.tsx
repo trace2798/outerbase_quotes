@@ -22,6 +22,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import {Edit} from "./edit";
 
 interface QuoteCardProps {
   index: any;
@@ -73,7 +74,7 @@ const QuoteCard: FC<QuoteCardProps> = ({
           <CardDescription>By {quote_by}</CardDescription>
         </CardHeader>
         {current_id === user_id && (
-          <CardFooter>
+          <CardFooter className="flex justify-between">
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -86,15 +87,12 @@ const QuoteCard: FC<QuoteCardProps> = ({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-[160px]">
-                  <Link href={`/`}>
-                    {" "}
-                    <DropdownMenuItem disabled>Edit (WIP)</DropdownMenuItem>
-                  </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={onDelete}>Delete</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
+            <Edit quote_by={quote_by} quote={quote} quote_id={quote_id} />
           </CardFooter>
         )}
       </Card>

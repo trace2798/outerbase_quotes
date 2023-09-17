@@ -88,7 +88,7 @@ const QuoteCard: FC<QuoteCardProps> = ({
                 <DropdownMenuContent align="end" className="w-[160px]">
                   <Link href={`/`}>
                     {" "}
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                    <DropdownMenuItem disabled>Edit (WIP)</DropdownMenuItem>
                   </Link>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={onDelete}>Delete</DropdownMenuItem>
